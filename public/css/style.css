@@ -21,6 +21,7 @@ body {
 
 h1 {
   font-family: 'wremena', sans-serif;
+  font-weight: 400;
   font-size: 3em;
   color: #ffffff;
   margin: 30px;
@@ -42,9 +43,9 @@ h1 {
 }
 
 #intro-content .intro-number {
-  font-weight: 700;
-  color: #A9F406;
-  font-size: 2.7em;
+  font-weight: 400;
+  color: #fff;
+  font-size: 1em;
 }
 
 #intro-content p {
@@ -97,8 +98,7 @@ h1 {
 }
 
 p.intro-number {
-  display: inline-block;
-  margin-top: 10px;
+  
 }
 
 p.intro-point {
@@ -115,6 +115,7 @@ p.intro-point {
 #intro-content ul {
   list-style-type: none;
   padding: 30px;
+  padding-bottom: 15px;
   margin: 0 auto;
 }
 
@@ -126,7 +127,7 @@ button#intro-cta {
   width: 180px;
   height: 80px;
   font-weight: 400;
-  margin-top: 5vh;
+  margin: 8vh 0;
   border: 3px solid #A9F406;
 }
 
@@ -151,10 +152,10 @@ button#about-close {
 
 #about-content h2 {
   font-family: 'wremena', sans-serif;
+  font-weight: 400;
   font-size: 50px;
   color: #A9F406;
   display: inline-block;
-  
 }
 
 #about-content p {
@@ -336,7 +337,7 @@ button#cta {
 }
 
 #gdpr-banner-container {
-  position: absolute;
+  position: fixed;
   width: 100%;
   bottom: 0;
   left: 0;
@@ -355,6 +356,27 @@ button#cta {
 }
 
 /* 48em = 768px */
+
+@media (max-height: 750px) {
+  #intro-content {
+    padding-top: 30px;
+  }
+
+  button#intro-cta { 
+    margin: 6vh 0;
+  }
+}
+
+@media (max-height: 700px) {
+  body {
+    overflow-y: scroll;
+  }
+
+  #intro-content ul {
+    padding: 15px 30px;
+  }
+
+}
 
 @media (min-width: 48em) {
 
@@ -389,6 +411,17 @@ button#cta {
 
   .list-grid {
     display: grid;
+  }
+
+  #intro-content .intro-number {
+    color: #A9F406;
+    font-size: 2.7em;
+    font-weight: 700;
+  }
+
+  p.intro-number {
+    display: inline-block;
+    margin-top: 10px;
   }
 }
 

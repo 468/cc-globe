@@ -9,7 +9,7 @@ app.use(express.static('api'));
 
 const rateLimiter = new RateLimiterMemory(
     {
-      points: 5, // 5 points
+      points: 1, // 5 points
       duration: 1, // per second
     }
 );

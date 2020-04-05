@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "@tweenjs/tween.js": "^18.5.0",
-    "browserify-fs": "^1.0.0",
     "express": "^4.17.1",
     "postprocessing": "^6.13.2",
     "rate-limiter-flexible": "^2.1.3",

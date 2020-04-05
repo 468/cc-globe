@@ -132,6 +132,14 @@
       </a>
     </div>
 
+    <div id="gdpr-banner-container" v-if="GDPRpopup">
+      <div id="gdpr-banner">
+        <span>Gdpr test</span> 
+        <button @click="acceptGDPR()">Accept</button>
+        <button @click="closeGDPR()">Close</button>
+      </div>
+    </div>
+
   </div>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap" rel="stylesheet"> 
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>

@@ -2,7 +2,7 @@
 
 Globe! Description soon.
 
-## Install
+## Install & Run
 
 1) npm install
-2) node index.js
+2) npm start

@@ -7,6 +7,7 @@ const ThreeGlobe = require('three-globe');
 const TWEEN = require('@tweenjs/tween.js');
 const Tone = require('tone');
 const io = require('socket.io-client');
+const VueAnalytics = require('vue-analytics').default;
 
 (function() {
 
@@ -25,17 +26,15 @@ const io = require('socket.io-client');
       userColour: false,
       clientId: false,
       connections: {},
-      introShown: false
+      introShown: false,
+      GDPRpopup: true
     },
     mounted: function () {
-      
       socket.on('connections', function(msg){
         createExistingPoints(msg);
       });
 
-
       socket.on('user', function(msg){
-     
         createPointAtLocation(msg.coords, msg.colour, msg.user_id);
       });
 
@@ -46,8 +45,6 @@ const io = require('socket.io-client');
       socket.on('light', function(msg){
         createBlobAtLocation(msg.coords, msg.colour);
       });
-
-
       this.isLoading = false;
     },
     methods: {
@@ -95,6 +92,13 @@ const io = require('socket.io-client');
       showPosition: function(position) {
           app.location = position;
       },
+      acceptGDPR: function() {
+        setupAnalytics();
+        this.closeGDPR();
+      },
+      closeGDPR: function() {
+        this.GDPRpopup = false;
+      }
     },
     watch: {
       location: function (val) {
@@ -106,6 +110,24 @@ const io = require('socket.io-client');
       }
     }
   })
+
+  const setupAnalytics = function() {
+    Vue.use(VueAnalytics, {
+      id: 'UA-XXX-X',
+      debug: {
+        enabled: true, // default value
+        trace: true, // default value
+        sendHitTask: true // default value
+      }
+    });
+    logPage();
+  }
+
+  const logPage = function() {
+    app.$ga.page('/')
+  }
+  
+
   
 
   var reverb = new Tone.Reverb().toMaster();

@@ -335,6 +335,21 @@ button#cta {
 
 }
 
+#gdpr-banner-container {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 12;
+  background-color: yellow;
+  height: 50px;
+  text-align: center;
+}
+
+#gdpr-banner {
+
+}
+
 /* 48em = 768px */
 
 @media (min-width: 48em) {

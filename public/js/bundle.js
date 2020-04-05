@@ -92641,11 +92641,11 @@ const VueAnalytics = require('vue-analytics').default;
   sound.connect(pitchShift).connect(reverb);
 
   var min=-10; 
-  var max=10;  
+  var max=10;
 
   var getRandomNumber = function() {
     return Math.random() * (+max - +min) + +min;
-}
+  }
 
   function createBlobAtLocation(coords, colour) {
     if (Number.isFinite(coords.x) && Number.isFinite(coords.y) && Number.isFinite(coords.z)) {
@@ -92654,8 +92654,7 @@ const VueAnalytics = require('vue-analytics').default;
       reverb.generate();
       sound.start();
 
-
-      let light = new THREE.PointLight( parseInt(colour, 16), 80, 0, 3 );
+      let light = new THREE.PointLight( parseInt(colour, 16), 100, 0, 3 );
       light.position.set( coords.x, coords.y, coords.z );
       scene.add( light );
 
@@ -92743,6 +92742,7 @@ const VueAnalytics = require('vue-analytics').default;
     // Add camera controls
     const orbitControls = new OrbitControls( camera, renderer.domElement );
     orbitControls.autoRotate = true;
+    orbitControls.enableZoom = false;   
 
     const composer = new PostProcessing.EffectComposer( renderer );
     composer.addPass( new PostProcessing.RenderPass( scene, camera ) );

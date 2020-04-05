@@ -18,9 +18,9 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-http.listen(port, function(){
+http.listen(PORT, function(){
   console.log(`listening on ${port}`);
 });
 

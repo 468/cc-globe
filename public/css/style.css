@@ -166,7 +166,6 @@ button#about-close {
   position: absolute;
   top: 0;
   left: 0;
-  margin-top: -50px;
 }
 
 #three-canvas: {
@@ -344,7 +343,6 @@ button#cta {
   z-index: 9;
   height: 80px;
   text-align: center;
-  
   background-color:rgb(169,244,6, 0.5)
 }
 

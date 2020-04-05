@@ -92529,14 +92529,11 @@ const VueAnalytics = require('vue-analytics').default;
       GDPRpopup: true
     },
     mounted: function () {
-      
       socket.on('connections', function(msg){
         createExistingPoints(msg);
       });
 
-
       socket.on('user', function(msg){
-     
         createPointAtLocation(msg.coords, msg.colour, msg.user_id);
       });
 
@@ -92547,8 +92544,6 @@ const VueAnalytics = require('vue-analytics').default;
       socket.on('light', function(msg){
         createBlobAtLocation(msg.coords, msg.colour);
       });
-
-
       this.isLoading = false;
     },
     methods: {
@@ -92616,8 +92611,6 @@ const VueAnalytics = require('vue-analytics').default;
   })
 
   const setupAnalytics = function() {
-    //console.log('starting analytics')
-    //console.log(app)
     Vue.use(VueAnalytics, {
       id: 'UA-XXX-X',
       debug: {

@@ -46,8 +46,8 @@ h1 {
 }
 
 #intro-content p {
-  font-size: 1.1em;
-  max-width: 600px;
+  font-size: 1em;
+  width: 80%;
 }
 
 .text-block {
@@ -59,6 +59,7 @@ h1 {
 
 .point-grid {
   display: grid;
+  margin: 0 20px;
 }
 
 .point-grid p:nth-child(1) {
@@ -72,7 +73,6 @@ h1 {
 }
 
 .list-grid {
-  display: grid;
   grid-auto-columns: 50% 50%;
   max-width: 600px;
 }
@@ -102,7 +102,7 @@ p.intro-number {
 p.intro-point {
   display: inline-block;
   text-align: left;
-  padding: 20px 15px;
+  padding: 0px 15px;
 }
 
 #list-grid-container {
@@ -353,6 +353,19 @@ button#cta {
 /* 48em = 768px */
 
 @media (min-width: 48em) {
+
+  #intro-content p {
+    max-width: 600px;
+    font-size: 1.1em;
+  }
+
+  p.intro-point {
+    padding: 20px 15px;
+  }
+
+  .point-grid {
+    margin: 0px;
+  }
   
   h1 {
     font-size: 5em;
@@ -368,6 +381,10 @@ button#cta {
   }
   .header .menu-icon {
     display: none;
+  }
+
+  .list-grid {
+    display: grid;
   }
 }
 

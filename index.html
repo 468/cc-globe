@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tuned In Earth</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div id="app">
+    <transition name="fade">
+      <div 
+        id="loading-screen"
+        v-if="this.isLoading"
+      >
+      </div>
+    </transition>
+    <h1>Tuned In Earth</h1>
+    <section class="header">
+      <input class="menu-btn" type="checkbox" id="menu-btn" />
+      <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+      <ul class="menu">
+        <li 
+          id="about-link"
+        >
+          <a href="#" @click="toggleAbout()">
+            About the project +
+          </a>
+        </li>
+        <transition name="fade">
+          <li 
+            id="contact-link" 
+            v-if="this.introShown && !this.aboutOpen"
+          >
+            <a href="#" @click="toggleIntro()">
+              Help +
+            </a>
+          </li>
+        </transition>
+      </ul>
+    </section>
+    <transition name="fade">
+      <section 
+        id="intro-content" 
+        v-if="this.introOpen && !this.aboutOpen"
+      >
+        <p class="text-block">
+          This website presents a new way to interact with each other while social distancing becomes the new norm in the physical world. As Covid-19 spreads, we hope you remember you are never alone. You are part of the beautiful ecosystem of the Earth and the sound you emit at all times is just one example of it.
+        </p>
+        <div id="list-grid-container">
+          <ul class="list-grid">
+            <li class="point-grid">
+              <p class="intro-number">
+                1.
+              </p>
+              <p class="intro-point">
+                Allow your location to be accessed so you can emit a sound based on your geolocation. If you would prefer not to share, you will view the website as a guest. 
+              </p>
+            </li>
+            <li class="point-grid">
+              <p class="intro-number">
+                2.
+              </p>
+              <p class="intro-point">
+                Press enter to feel closer to your earthly neighbours with sound. 
+              </p>
+            </li>
+            <li class="point-grid">
+              <p class="intro-number">
+                3.
+              </p>
+              <p class="intro-point">
+                Press any key or your screen to add your noise to the playing melody.
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <p class="text-block">
+          The lights are indications of where the other connected people are currently located. Each person logged in adds a specific melody to the sound playing live on the website.
+        </p>
+
+        <button 
+          id="intro-cta"
+          @click="toggleIntro()"
+        >
+          Enter
+        </button>
+      </section>
+    </transition>
+    
+    <transition name="fade">
+      <section 
+        id="about-content"
+        v-if="this.aboutOpen"
+      >
+        <h2>
+          About the project
+        </h2>
+        <button 
+          id="about-close"
+          @click="toggleAbout()"
+        >
+          ×
+      </button>
+        <p>
+          The lights are indications of where the other connected people are currently located. Each person logged in adds a specific melody to the sound playing live on the website.
+        </p>
+      </section>
+    </transition>
+    
+    <transition name="fade">
+      <div 
+        id="cta-container"
+        v-if="this.ctaEnabled && !this.introOpen"
+      >
+        <button 
+          id="cta" 
+          @click="triggerCta()"
+        >
+          Say hi
+        </button>
+      </div>
+    </transition>
+    
+    <div class="three-container">
+    </div>
+
+    <div id="logo-container">
+      <a href="http://www.climateandcities.com/" target="_blank">
+        <img src="/assets/LOGO_TRANSPAsset-32x.png" id="logo" />
+      </a>
+    </div>
+
+  </div>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap" rel="stylesheet"> 
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="./js/bundle.js" type="module"></script>
+</body>
+</html>

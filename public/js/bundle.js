@@ -92726,6 +92726,7 @@ const VueAnalytics = require('vue-analytics').default;
 
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(1);
     document.querySelector('.three-container').appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
@@ -92737,7 +92738,12 @@ const VueAnalytics = require('vue-analytics').default;
     const camera = new THREE.PerspectiveCamera();
     camera.aspect = window.innerWidth/window.innerHeight;
     camera.updateProjectionMatrix();
-    camera.position.z = 350;
+
+    if (window.innerWidth < 600) {
+      camera.position.z = 650;
+    } else {
+      camera.position.z = 350;
+    }
 
     // Add camera controls
     const orbitControls = new OrbitControls( camera, renderer.domElement );

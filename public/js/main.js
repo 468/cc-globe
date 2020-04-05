@@ -239,7 +239,12 @@ const VueAnalytics = require('vue-analytics').default;
     const camera = new THREE.PerspectiveCamera();
     camera.aspect = window.innerWidth/window.innerHeight;
     camera.updateProjectionMatrix();
-    camera.position.z = 350;
+
+    if (window.innerWidth < 600) {
+      camera.position.z = 650;
+    } else {
+      camera.position.z = 380;
+    }
 
     // Add camera controls
     const orbitControls = new OrbitControls( camera, renderer.domElement );

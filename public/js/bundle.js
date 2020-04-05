@@ -92655,7 +92655,7 @@ const VueAnalytics = require('vue-analytics').default;
       sound.start();
 
 
-      let light = new THREE.PointLight( parseInt(colour, 16), 100, 65 );
+      let light = new THREE.PointLight( parseInt(colour, 16), 80, 0, 3 );
       light.position.set( coords.x, coords.y, coords.z );
       scene.add( light );
 

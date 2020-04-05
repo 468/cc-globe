@@ -227,6 +227,7 @@ const VueAnalytics = require('vue-analytics').default;
 
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(1);
     document.querySelector('.three-container').appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();

@@ -49,6 +49,7 @@ const VueAnalytics = require('vue-analytics').default;
     },
     methods: {
       toggleIntro: function () {
+        this.closeGDPR();
         this.introShown = true;
         this.introOpen = !this.introOpen;
         if (!this.coords) {
@@ -127,9 +128,6 @@ const VueAnalytics = require('vue-analytics').default;
     app.$ga.page('/')
   }
   
-
-  
-
   var reverb = new Tone.Reverb().toMaster();
   reverb.decay = 2
 
@@ -244,19 +242,8 @@ const VueAnalytics = require('vue-analytics').default;
     camera.position.z = 350;
 
     // Add camera controls
-
-    /*
-    const tbControls = new THREE.TrackballControls(camera, renderer.domElement);
-    tbControls.minDistance = 101;
-    tbControls.rotateSpeed = 5;
-    tbControls.zoomSpeed = 0.8;
-    */
-
-
     const orbitControls = new OrbitControls( camera, renderer.domElement );
     orbitControls.autoRotate = true;
-
-          
 
     const composer = new PostProcessing.EffectComposer( renderer );
     composer.addPass( new PostProcessing.RenderPass( scene, camera ) );
@@ -264,14 +251,10 @@ const VueAnalytics = require('vue-analytics').default;
 
     createStars();
     
-
     // Kick-off renderer
     (function animate() { // IIFE
-      // Frame cycle
-      //tbControls.update();
       orbitControls.update();
       TWEEN.update();
-      //renderer.render(scene, camera);
       composer.render();
       requestAnimationFrame(animate);
     })();

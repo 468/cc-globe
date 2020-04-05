@@ -21,7 +21,7 @@ app.get('/', function(req, res){
 const PORT = process.env.PORT || 3000;
 
 http.listen(PORT, function(){
-  console.log(`listening on ${port}`);
+  console.log(`listening on ${PORT}`);
 });
 
 let connected = {};

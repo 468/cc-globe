@@ -243,6 +243,7 @@ const VueAnalytics = require('vue-analytics').default;
     // Add camera controls
     const orbitControls = new OrbitControls( camera, renderer.domElement );
     orbitControls.autoRotate = true;
+    orbitControls.enableZoom = false;   
 
     const composer = new PostProcessing.EffectComposer( renderer );
     composer.addPass( new PostProcessing.RenderPass( scene, camera ) );

@@ -249,7 +249,7 @@ const StartAudioContext = require('startaudiocontext');
     if (window.innerWidth < 600) {
       camera.position.z = 650;
     } else {
-      camera.position.z = 380;
+      camera.position.z = 450;
     }
 
     // Add camera controls

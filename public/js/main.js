@@ -10,9 +10,7 @@ const io = require('socket.io-client');
 const VueAnalytics = require('vue-analytics').default;
 const StartAudioContext = require('startaudiocontext');
 
-StartAudioContext(Tone.context, '#intro-cta').then(function(){
-	console.log('audio context started');
-})
+StartAudioContext(Tone.context, '#intro-cta');
 
 
 (function() {

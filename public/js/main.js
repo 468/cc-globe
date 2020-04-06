@@ -116,10 +116,13 @@ const VueAnalytics = require('vue-analytics').default;
     Vue.use(VueAnalytics, {
       id: 'UA-XXX-X',
       debug: {
-        enabled: true, // default value
+        enabled: false, // default value
         trace: true, // default value
         sendHitTask: true // default value
-      }
+      },
+      set: [
+        { field: 'anonymizeIp', value: true }
+      ]
     });
     logPage();
   }
@@ -224,7 +227,7 @@ const VueAnalytics = require('vue-analytics').default;
     .pointAltitude('size')
     .pointColor('color');
     //.pointsData(gData)
-
+  
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(1);

@@ -92742,7 +92742,7 @@ const VueAnalytics = require('vue-analytics').default;
     if (window.innerWidth < 600) {
       camera.position.z = 650;
     } else {
-      camera.position.z = 350;
+      camera.position.z = 380;
     }
 
     // Add camera controls

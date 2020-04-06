@@ -24,7 +24,7 @@ h1 {
   font-weight: 400;
   font-size: 3em;
   color: #ffffff;
-  margin: 30px;
+  margin: 14px;
   z-index: 8;
   position: relative;
   margin-bottom: 0;
@@ -263,7 +263,7 @@ button#cta {
 .header .menu-icon {
   cursor: pointer;
   float: right;
-  padding: 32px 0px;
+  padding: 18px 0px;
   position: relative;
   user-select: none;
 }
@@ -344,7 +344,11 @@ button#cta {
   z-index: 9;
   height: 80px;
   text-align: center;
-  background-color:rgb(169,244,6, 0.5)
+  background-color: #000000;
+  border-top: 2px solid #ffffff;
+  color: #ffffff;
+  font-size: 18px;
+  font-family: helvetica, 'IBM Plex Sans', sans-serif;
 }
 
 #gdpr-banner {
@@ -353,6 +357,23 @@ button#cta {
   margin: 0 auto;
   height: 100%;
   line-height: 80px;
+}
+
+#accept-gdpr {
+  border-radius: 5px;
+  border: 2px solid #A9F406;
+  background-color: #A9F406;
+  color: #000000;
+  padding: 5px 28px;
+  margin: 0 20px;
+}
+
+#reject-gdpr {
+  border-radius: 5px;
+  border: 2px solid #A9F406;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 5px 28px;
 }
 
 /* 48em = 768px */
@@ -380,6 +401,15 @@ button#cta {
 
 @media (min-width: 48em) {
 
+
+  .header .menu-icon {
+    cursor: pointer;
+    float: right;
+    padding: 32px 0px;
+    position: relative;
+    user-select: none;
+  }
+
   #intro-content p {
     max-width: 600px;
     font-size: 1.1em;
@@ -395,6 +425,7 @@ button#cta {
   
   h1 {
     font-size: 5em;
+    margin: 30px;
   }
   .header li {
     width: 200px;

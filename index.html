@@ -130,8 +130,8 @@
       <div id="gdpr-banner-container" v-if="GDPRpopup">
         <div id="gdpr-banner">
           <span>Gdpr test. Link to privacy policy goes here.</span> 
-          <button @click="acceptGDPR()">Accept</button>
-          <button @click="closeGDPR()">Close</button>
+          <button @click="acceptGDPR()" id="accept-gdpr">Yes</button>
+          <button @click="closeGDPR()"  id="reject-gdpr">No</button>
         </div>
       </div>
     </transition>

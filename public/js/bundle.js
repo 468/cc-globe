@@ -92700,8 +92700,6 @@ const io = require('socket.io-client');
 const VueAnalytics = require('vue-analytics').default;
 const StartAudioContext = require('startaudiocontext');
 
-StartAudioContext(Tone.context, '#intro-cta');
-
 
 (function() {
 
@@ -92745,6 +92743,7 @@ StartAudioContext(Tone.context, '#intro-cta');
       toggleIntro: function () {
         this.closeGDPR();
         this.introShown = true;
+        Tone.context.resume();
         this.introOpen = !this.introOpen;
         if (!this.coords) {
           this.getLocation();

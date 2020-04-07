@@ -92702,7 +92702,9 @@ const StartAudioContext = require('startaudiocontext');
 
 (function() {
 
-  const socket = io();
+  const socket = io.connect('https://cc-globe.herokuapp.com');
+
+  console.log(socket)
 
   const app = new Vue({
     el: '#app',
@@ -92724,7 +92726,6 @@ const StartAudioContext = require('startaudiocontext');
     },
     beforeMount: function() {
       if (localStorage.getItem("gdprSeen")) {
-        console.log('hide popup, seen it')
         this.GDPRpopup = false;
       }
     },

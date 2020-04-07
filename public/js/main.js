@@ -12,7 +12,9 @@ const StartAudioContext = require('startaudiocontext');
 
 (function() {
 
-  const socket = io();
+  const socket = io.connect('https://cc-globe.herokuapp.com');
+
+  console.log(socket)
 
   const app = new Vue({
     el: '#app',

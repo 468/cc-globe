@@ -205,7 +205,7 @@ const StartAudioContext = require('startaudiocontext');
       } else if (sound === 'pluck' || sound === 'pad_airy_1' || sound === 'pad_airy_2' ) {
         pitchShiftTwo.pitch = pitch;
       }
-      reverb.generate();
+      //reverb.generate();
       allSounds[sound].start();
 
       let light = new THREE.PointLight( parseInt(colour, 16), 100, 0, 3 );

@@ -327,7 +327,7 @@ button#cta {
 #logo-container {
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  bottom: 16px;
   z-index: 11;
   width: 60px;
 }

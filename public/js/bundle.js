@@ -92721,10 +92721,12 @@ const StartAudioContext = require('startaudiocontext');
       GDPRpopup: true,
       sounds: [ "bass", "hat1", "low_hit", "pad_1", "pad_airy_1", "pad_airy_2", "pluck", "pluck_2", "rim", "shaker" ],
       instrument: false,
+      pitch: 0,
+      pitchArrayOne: [0, 2, 4, 7, 9, 10],
+      pitchArrayTwo: [0, 4, 8, -6, -9, -10]
     },
     beforeMount: function() {
       if (localStorage.getItem("gdprSeen")) {
-        console.log('hide popup, seen it')
         this.GDPRpopup = false;
       }
     },
@@ -92742,7 +92744,7 @@ const StartAudioContext = require('startaudiocontext');
       })
     
       socket.on('light', function(msg){
-        createBlobAtLocation(msg.coords, msg.colour, msg.instrument);
+        createBlobAtLocation(msg.coords, msg.colour, msg.instrument, msg.pitch);
       });
       this.isLoading = false;
     },
@@ -92769,7 +92771,8 @@ const StartAudioContext = require('startaudiocontext');
       triggerCta: function() {
         if (this.coords) {
           this.timeoutCta();
-          socket.emit('light', {coords: this.coords, colour: this.userColour, instrument: this.userInstrument });
+          this.setPitch();
+          socket.emit('light', {coords: this.coords, colour: this.userColour, instrument: this.userInstrument, pitch: this.pitch });
         } else {
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.showPosition);
@@ -92783,6 +92786,15 @@ const StartAudioContext = require('startaudiocontext');
       },
       pickUserInstrument: function() {
         this.userInstrument = this.sounds[Math.floor(Math.random() * this.sounds.length)];
+      },
+      setPitch: function() {
+        if (this.userInstrument === 'bass' || this.userInstrument === 'low_hit') {
+          this.pitch = this.pitchArrayOne[Math.floor(Math.random() * this.pitchArrayOne.length)];
+        } else if (this.userInstrument === 'pluck' || this.userInstrument === 'pad_airy_1' || this.userInstrument === 'pad_airy_2' ) {
+          this.pitch = this.pitchArrayTwo[Math.floor(Math.random() * this.pitchArrayTwo.length)];
+        } else {
+          this.pitch = 0;
+        }
       },
       assignUser: function() {
         this.pickUserColour();
@@ -92871,19 +92883,19 @@ const StartAudioContext = require('startaudiocontext');
     }
   }
 
-  const pitchArrayOne = [0, 2, 4, 7, 9, 10];
-  const pitchArrayTwo = [0, 4, 8, -6, -9, -10];
-
   const getRandomFromArray = function(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
-  function createBlobAtLocation(coords, colour, sound) {
+  function createBlobAtLocation(coords, colour, sound, pitch) {
     if (Number.isFinite(coords.x) && Number.isFinite(coords.y) && Number.isFinite(coords.z)) {
       allSounds[sound].stop();
-      pitchShift.pitch = getRandomFromArray(pitchArrayOne);
-      pitchShiftTwo.pitch = getRandomFromArray(pitchArrayTwo);
-      //reverb.generate();
+      if(sound === 'bass' || sound === 'low_hit') {
+        pitchShift.pitch = pitch;
+      } else if (sound === 'pluck' || sound === 'pad_airy_1' || sound === 'pad_airy_2' ) {
+        pitchShiftTwo.pitch = pitch;
+      }
+      reverb.generate();
       allSounds[sound].start();
 
       let light = new THREE.PointLight( parseInt(colour, 16), 100, 0, 3 );
@@ -92931,7 +92943,6 @@ const StartAudioContext = require('startaudiocontext');
     let dot = new THREE.Points( dotGeometry, dotMaterial );
     scene.add( dot );
     dots[id] = { 'dot': dot}
-    console.log(dots);
   }
 
   function removePointFromLocation(id) {

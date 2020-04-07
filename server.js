@@ -5,7 +5,6 @@ var io = require('socket.io')(http);
 const { RateLimiterMemory } = require('rate-limiter-flexible');
 
 app.use(express.static('public'));
-app.use(express.static('api'));
 
 const rateLimiter = new RateLimiterMemory(
     {
@@ -27,10 +26,6 @@ http.listen(PORT, function(){
 let connected = {};
 
 io.on('connection', function(socket){
-
-    //io.emit('connections', connected);
-  
-    //io.sockets.socket(socket.id).emit('connections', connected);
 
     io.sockets.connected[socket.id].emit('connections', connected);
 

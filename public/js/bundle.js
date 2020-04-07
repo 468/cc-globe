@@ -92719,7 +92719,9 @@ const StartAudioContext = require('startaudiocontext');
       clientId: false,
       connections: {},
       introShown: false,
-      GDPRpopup: true
+      GDPRpopup: true,
+      sounds: [ "bass", "hat1", "low_hit", "pad_1", "pad_airy_1", "pad_airy_2", "pluck", "pluck_2", "rim", "shaker" ],
+      instrument: false,
     },
     mounted: function () {
       socket.on('connections', function(msg){
@@ -92735,7 +92737,7 @@ const StartAudioContext = require('startaudiocontext');
       })
     
       socket.on('light', function(msg){
-        createBlobAtLocation(msg.coords, msg.colour);
+        createBlobAtLocation(msg.coords, msg.colour, msg.instrument);
       });
       this.isLoading = false;
     },
@@ -92762,7 +92764,7 @@ const StartAudioContext = require('startaudiocontext');
       triggerCta: function() {
         if (this.coords) {
           this.timeoutCta();
-          socket.emit('light', {coords: this.coords, colour: this.userColour});
+          socket.emit('light', {coords: this.coords, colour: this.userColour, instrument: this.userInstrument });
         } else {
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.showPosition);
@@ -92774,8 +92776,12 @@ const StartAudioContext = require('startaudiocontext');
       pickUserColour: function() {
         this.userColour = '0x' + Math.floor(Math.random()*16777215).toString(16);
       },
+      pickUserInstrument: function() {
+        this.userInstrument = this.sounds[Math.floor(Math.random() * this.sounds.length)];
+      },
       assignUser: function() {
         this.pickUserColour();
+        this.pickUserInstrument();
         socket.emit('user', {coords: this.coords, colour: this.userColour});
       },
       getLocation: function() {
@@ -92823,33 +92829,57 @@ const StartAudioContext = require('startaudiocontext');
   const logPage = function() {
     app.$ga.page('/')
   }
+
   
-  var reverb = new Tone.Reverb().toMaster();
+  const bgSound = "background";
+  const sounds = [ "bass", "hat1", "low_hit", "pad_1", "pad_airy_1", "pad_airy_2", "pluck", "pluck_2", "rim", "shaker" ]
+  const allSounds = {};
+  
+  const reverb = new Tone.Reverb().toMaster();
   reverb.decay = 2
 
-  var pitchShift = new Tone.PitchShift().toMaster();
-  pitchShift.pitch = -4;
+  const pitchShift = new Tone.PitchShift().toMaster();
+  const pitchShiftTwo = new Tone.PitchShift().toMaster();
 
-  var sound = new Tone.Player({
-    url : "./assets/pluck_1.mp3",
-    //loop : true,
-  }).toMaster(); //toMaster basically just means to speakers I think
 
-  sound.connect(pitchShift).connect(reverb);
+  let soundBackground = new Tone.Player({
+    url : `./sounds/${bgSound}.mp3`,
+    loop : true,
+    autostart: true
+  }).toMaster(); 
 
-  var min=-10; 
-  var max=10;
+  soundBackground.volume.value = 0.05;
 
-  var getRandomNumber = function() {
-    return Math.random() * (+max - +min) + +min;
+  for (let i = 0; i< sounds.length; i++) {
+    allSounds[`${sounds[i]}`] = new Tone.Player({
+      url : `./sounds/${sounds[i]}.mp3`,
+    }).toMaster();
+
+    allSounds[`${sounds[i]}`].connect(reverb);
+    allSounds[`${sounds[i]}`].volume.value = -0.5;
+    if (sounds[i] === 'bass' || sounds[i] === 'low_hit') {
+      allSounds[`${sounds[i]}`].connect(pitchShift);
+
+    } else if (sounds[i] === 'pluck' || sounds[i] === 'pad_airy_1' || sounds[i] === 'pad_airy_2') {
+      allSounds[`${sounds[i]}`].connect(pitchShiftTwo);
+
+    }
   }
 
-  function createBlobAtLocation(coords, colour) {
+  const pitchArrayOne = [0, 2, 4, 7, 9, 10];
+  const pitchArrayTwo = [0, 4, 8, -6, -9, -10];
+
+  const getRandomFromArray = function(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function createBlobAtLocation(coords, colour, sound) {
     if (Number.isFinite(coords.x) && Number.isFinite(coords.y) && Number.isFinite(coords.z)) {
-      sound.stop();
-      pitchShift.pitch = getRandomNumber();
-      reverb.generate();
-      sound.start();
+      allSounds[sound].stop();
+      pitchShift.pitch = getRandomFromArray(pitchArrayOne);
+      pitchShiftTwo.pitch = getRandomFromArray(pitchArrayTwo);
+      //reverb.generate();
+      allSounds[sound].start();
 
       let light = new THREE.PointLight( parseInt(colour, 16), 100, 0, 3 );
       light.position.set( coords.x, coords.y, coords.z );
@@ -92939,7 +92969,7 @@ const StartAudioContext = require('startaudiocontext');
     if (window.innerWidth < 600) {
       camera.position.z = 650;
     } else {
-      camera.position.z = 380;
+      camera.position.z = 450;
     }
 
     // Add camera controls

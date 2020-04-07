@@ -10,7 +10,6 @@ const io = require('socket.io-client');
 const VueAnalytics = require('vue-analytics').default;
 const StartAudioContext = require('startaudiocontext');
 
-
 (function() {
 
   const socket = io();
@@ -32,6 +31,11 @@ const StartAudioContext = require('startaudiocontext');
       GDPRpopup: true,
       sounds: [ "bass", "hat1", "low_hit", "pad_1", "pad_airy_1", "pad_airy_2", "pluck", "pluck_2", "rim", "shaker" ],
       instrument: false,
+    },
+    beforeMount: function() {
+      if (localStorage.getItem("gdprSeen")) {
+        this.GDPRpopup = false;
+      }
     },
     mounted: function () {
       socket.on('connections', function(msg){
@@ -107,6 +111,7 @@ const StartAudioContext = require('startaudiocontext');
         this.closeGDPR();
       },
       closeGDPR: function() {
+        localStorage.setItem("gdprSeen", true);
         this.GDPRpopup = false;
       }
     },
@@ -172,7 +177,6 @@ const StartAudioContext = require('startaudiocontext');
 
     } else if (sounds[i] === 'pluck' || sounds[i] === 'pad_airy_1' || sounds[i] === 'pad_airy_2') {
       allSounds[`${sounds[i]}`].connect(pitchShiftTwo);
-
     }
   }
 

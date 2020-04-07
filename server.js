@@ -15,7 +15,7 @@ const rateLimiter = new RateLimiterMemory(
 );
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + './public/index.html');
 });
 
 const PORT = process.env.PORT || 3000;

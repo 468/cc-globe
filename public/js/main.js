@@ -223,7 +223,7 @@ const StartAudioContext = require('startaudiocontext');
       reverb.generate();
       allSounds[sound].start();
 
-      let light = new THREE.PointLight( parseInt(colour, 16), 100, 0, 3 );
+      let light = new THREE.PointLight( parseInt(colour, 16), 150, 0, 5);
       light.position.set( coords.x, coords.y, coords.z );
       scene.add( light );
 
@@ -293,6 +293,12 @@ const StartAudioContext = require('startaudiocontext');
     //.showAtmosphere(false);
     
     //.pointsData(gData)
+
+
+    console.log(Globe['children'][0]['children'][0]['children'][0])
+    console.log(Globe['children'][0]['children'][0]['children'][1])
+
+    Globe['children'][0]['children'][0]['children'][0].material.shininess = 0;
 
   
     const renderer = new THREE.WebGLRenderer();

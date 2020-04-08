@@ -190,7 +190,7 @@ const StartAudioContext = require('startaudiocontext');
     autostart: true
   }).toMaster(); 
 
-  soundBackground.volume.value = -0.5;
+  soundBackground.volume.value = -6;
 
   for (let i = 0; i< sounds.length; i++) {
     allSounds[`${sounds[i]}`] = new Tone.Player({
@@ -198,7 +198,8 @@ const StartAudioContext = require('startaudiocontext');
     }).toMaster();
 
     allSounds[`${sounds[i]}`].connect(reverb);
-    allSounds[`${sounds[i]}`].volume.value = -0.5;
+    allSounds[`${sounds[i]}`].volume.value = -5;
+
     if (sounds[i] === 'bass' || sounds[i] === 'low_hit') {
       allSounds[`${sounds[i]}`].connect(pitchShift);
 
@@ -219,7 +220,7 @@ const StartAudioContext = require('startaudiocontext');
       } else if (sound === 'pluck' || sound === 'pad_airy_1' || sound === 'pad_airy_2' ) {
         pitchShiftTwo.pitch = pitch;
       }
-      //reverb.generate();
+      reverb.generate();
       allSounds[sound].start();
 
       let light = new THREE.PointLight( parseInt(colour, 16), 100, 0, 3 );

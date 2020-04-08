@@ -131,7 +131,10 @@ const StartAudioContext = require('startaudiocontext');
         }
       },
       showPosition: function(position) {
-          app.location = position.toFixed(2);
+          let updatedPosition = { coords: {latitude: 0, longitude: 0}};
+          updatedPosition['coords']['latitude'] = position.coords.latitude.toFixed(2);
+          updatedPosition['coords']['longitude'] = position.coords.longitude.toFixed(2);
+          app.location = updatedPosition;
       },
       acceptGDPR: function() {
         setupAnalytics();

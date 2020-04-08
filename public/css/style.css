@@ -498,7 +498,7 @@ button#cta {
 
   #pitch-options-left {
     left: 0;
-    width: 45%;
+    width: calc(50% - 100px);
     text-align: right;
     z-index: 7;
     position: absolute;
@@ -506,7 +506,7 @@ button#cta {
 
   #pitch-options-right {
     right: 0;
-    width: 45%;
+    width: calc(50% - 100px);
     text-align: left;
     z-index: 7;
     position: absolute;

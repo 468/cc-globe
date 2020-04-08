@@ -92866,7 +92866,7 @@ const StartAudioContext = require('startaudiocontext');
     autostart: true
   }).toMaster(); 
 
-  soundBackground.volume.value = 0.05;
+  soundBackground.volume.value = -0.1;
 
   for (let i = 0; i< sounds.length; i++) {
     allSounds[`${sounds[i]}`] = new Tone.Player({
@@ -92964,8 +92964,11 @@ const StartAudioContext = require('startaudiocontext');
     .globeImageUrl('./assets/earth-lighter-blue.jpg')
     //.bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
     .pointAltitude('size')
-    .pointColor('color');
+    .pointColor('color')
+    //.showAtmosphere(false);
+    
     //.pointsData(gData)
+
   
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);

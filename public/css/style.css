@@ -471,18 +471,15 @@ button#cta {
   .pitch-options label {
     display: inline-block;
     background-color: #000;
-    
     font-family: sans-serif, Arial;
-    font-size: 16px;
     border: 2px solid #222;
     height: 20px;
     width: 0;
     margin: 0 10px;
-    /* border-radius: 50%; */
     height: 45px;
-    /* top: 15px; */
     padding: 15px;
-    margin-top: 25px;
+    border-radius: 50%;
+    height: 0px;
   }
 
   .pitch-options input[type="radio"]:checked + label {

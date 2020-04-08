@@ -92723,7 +92723,9 @@ const StartAudioContext = require('startaudiocontext');
       instrument: false,
       pitch: 0,
       pitchArrayOne: [0, 2, 4, 7, 9, 10],
-      pitchArrayTwo: [0, 4, 8, -6, -9, -10]
+      pitchArrayTwo: [-10, -9, -6, 0, 4, 8],
+      scale: false,
+      pitchEnabled: false
     },
     beforeMount: function() {
       if (localStorage.getItem("gdprSeen")) {
@@ -92771,7 +92773,7 @@ const StartAudioContext = require('startaudiocontext');
       triggerCta: function() {
         if (this.coords) {
           this.timeoutCta();
-          this.setPitch();
+          //this.setPitch();
           socket.emit('light', {coords: this.coords, colour: this.userColour, instrument: this.userInstrument, pitch: this.pitch });
         } else {
           if (navigator.geolocation) {
@@ -92784,8 +92786,20 @@ const StartAudioContext = require('startaudiocontext');
       pickUserColour: function() {
         this.userColour = '0x' + Math.floor(Math.random()*16777215).toString(16);
       },
+      setScale: function() {
+        if (this.userInstrument === 'bass' || this.userInstrument === 'low_hit') {
+          this.scale = this.pitchArrayOne;
+          this.pitchEnabled = true;
+        } else if (this.userInstrument === 'pluck' || this.userInstrument === 'pad_airy_1' || this.userInstrument === 'pad_airy_2' ) {
+          this.scale = this.pitchArrayTwo;
+          this.pitchEnabled = true;
+        } else {
+          this.scale = this.pitchArrayOne;
+        }
+      },
       pickUserInstrument: function() {
         this.userInstrument = this.sounds[Math.floor(Math.random() * this.sounds.length)];
+        this.setScale();
       },
       setPitch: function() {
         if (this.userInstrument === 'bass' || this.userInstrument === 'low_hit') {

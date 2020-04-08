@@ -176,7 +176,7 @@ const StartAudioContext = require('startaudiocontext');
     autostart: true
   }).toMaster(); 
 
-  soundBackground.volume.value = -0.1;
+  soundBackground.volume.value = -0.5;
 
   for (let i = 0; i< sounds.length; i++) {
     allSounds[`${sounds[i]}`] = new Tone.Player({

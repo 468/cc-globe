@@ -131,7 +131,7 @@ const StartAudioContext = require('startaudiocontext');
         }
       },
       showPosition: function(position) {
-          app.location = position;
+          app.location = position.toFixed(2);
       },
       acceptGDPR: function() {
         setupAnalytics();
@@ -290,17 +290,9 @@ const StartAudioContext = require('startaudiocontext');
     //.bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
     .pointAltitude('size')
     .pointColor('color')
-    //.showAtmosphere(false);
-    
-    //.pointsData(gData)
-
-
-    console.log(Globe['children'][0]['children'][0]['children'][0])
-    console.log(Globe['children'][0]['children'][0]['children'][1])
 
     Globe['children'][0]['children'][0]['children'][0].material.shininess = 0;
 
-  
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(1);

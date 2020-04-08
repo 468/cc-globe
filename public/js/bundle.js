@@ -92821,8 +92821,7 @@ const StartAudioContext = require('startaudiocontext');
         }
       },
       showPosition: function(position) {
-          console.log(position)
-          app.location = position;
+          app.location = position.toFixed(2);
       },
       acceptGDPR: function() {
         setupAnalytics();

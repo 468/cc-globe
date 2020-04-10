@@ -92725,7 +92725,9 @@ const StartAudioContext = require('startaudiocontext');
       pitchArrayOne: [0, 2, 4, 7, 9, 10],
       pitchArrayTwo: [-10, -9, -6, 0, 4, 8],
       scale: false,
-      pitchEnabled: false
+      pitchEnabled: false,
+      isMobileView: false,
+      menuDropdownToggle: false
     },
     beforeMount: function() {
       if (localStorage.getItem("gdprSeen")) {
@@ -92733,6 +92735,20 @@ const StartAudioContext = require('startaudiocontext');
       }
     },
     mounted: function () {
+
+      if (window.innerWidth < 768) {
+        this.isMobileView = true;
+      }
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth < 768) {
+          this.isMobileView = true;
+        } else {
+          this.isMobileView = false;
+        }
+      })
+
+
       socket.on('connections', function(msg){
         createExistingPoints(msg);
       });
@@ -92759,6 +92775,9 @@ const StartAudioContext = require('startaudiocontext');
         if (!this.coords) {
           this.getLocation();
         }
+      },
+      toggleDropdown: function() {
+        this.menuDropdownToggle = !this.menuDropdownToggle;
       },
       toggleAbout: function() {
         this.aboutOpen = !this.aboutOpen;

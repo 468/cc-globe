@@ -199,13 +199,20 @@ button#cta {
   font-family: helvetica, 'IBM Plex Sans', sans-serif;
   font-size: 20px;
   color: #A9F406;
-  max-width: 645px;
-  right: 20px;
   top: 20px;
   text-align: right;
   clear: both;
   max-height: 0;
   transition: max-height .2s ease-out;
+}
+
+.menu-border {
+  border-bottom: 3px solid;
+}
+
+.li-border {
+  border-top: 1px solid;
+  border-bottom: 1px solid;
 }
 
 /* header */
@@ -216,13 +223,13 @@ button#cta {
   color: #A9F406;
   max-width: 645px;
   position: absolute;
-  right: 20px;
   top: 20px;
   text-align: right;
   clear: both;
   max-height: 0;
   transition: max-height .2s ease-out;
   z-index: 9;
+  width: 100%;
 }
 
 .header ul {
@@ -230,11 +237,13 @@ button#cta {
   padding: 0;
   list-style: none;
   overflow: hidden;
+  padding-top: 20px;
 }
 
 .header li {
   z-index: 5;
   position: relative;
+  padding: 17px;
 }
 
 .header li a {
@@ -266,6 +275,7 @@ button#cta {
   padding: 18px 0px;
   position: relative;
   user-select: none;
+  margin-right: 20px;
 }
 
 .header .menu-icon .navicon {
@@ -401,6 +411,23 @@ button#cta {
 
 @media (min-width: 48em) {
 
+  .header {
+    right: 20px;
+    max-width: 645px;
+  }
+
+  .header ul {
+    padding-top: 0;
+  }
+
+  .header li {
+    padding: 5px;
+  }
+
+  .menu {
+    padding-top: 0;
+    border-bottom: 0px solid #000;
+  }
 
   .header .menu-icon {
     cursor: pointer;

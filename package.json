@@ -10,8 +10,7 @@
     "three-globe": "^2.6.9",
     "three-orbit-controls": "^82.1.0",
     "tone": "^13.8.25",
-    "vue": "^2.6.11",
-    "vue-analytics": "^5.22.1"
+    "vue": "^2.6.11"
   },
   "scripts": {
     "start": "node server.js"

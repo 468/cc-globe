@@ -7,7 +7,6 @@ const ThreeGlobe = require('three-globe');
 const TWEEN = require('@tweenjs/tween.js');
 const Tone = require('tone');
 const io = require('socket.io-client');
-const VueAnalytics = require('vue-analytics').default;
 const StartAudioContext = require('startaudiocontext');
 
 (function() {
@@ -75,7 +74,6 @@ const StartAudioContext = require('startaudiocontext');
         createBlobAtLocation(msg.coords, msg.colour, msg.instrument, msg.pitch);
       });
       this.isLoading = false;
-      setupAnalytics();
     },
     methods: {
       toggleIntro: function () {
@@ -182,26 +180,8 @@ const StartAudioContext = require('startaudiocontext');
     }
   })
 
-  const setupAnalytics = function() {
-    Vue.use(VueAnalytics, {
-      id: 'UA-162427153-2',
-      debug: {
-        enabled: false, // default value
-        trace: true, // default value
-        sendHitTask: true // default value
-      },
-      set: [
-        { field: 'anonymizeIp', value: true }
-      ]
-    });
-    logPage();
-  }
+  //setupAnalytics();
 
-  const logPage = function() {
-    app.$ga.page('/')
-  }
-
-  
   const bgSound = "background";
   const sounds = [ "bass", "hat1", "low_hit", "pad_1", "pad_airy_1", "pad_airy_2", "pluck", "pluck_2", "rim", "shaker" ]
   const allSounds = {};

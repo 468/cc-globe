@@ -184,7 +184,7 @@ const StartAudioContext = require('startaudiocontext');
 
   const setupAnalytics = function() {
     Vue.use(VueAnalytics, {
-      id: 'UA-XXX-X',
+      id: 'UA-162427153-2',
       debug: {
         enabled: false, // default value
         trace: true, // default value

@@ -118,8 +118,8 @@ p.intro-point {
 
 #intro-content ul {
   list-style-type: none;
-  padding: 30px;
-  padding-bottom: 15px;
+  padding: 2vh;
+  padding-bottom: 1vh;
   margin: 0 auto;
 }
 
@@ -387,7 +387,7 @@ button#cta {
 }
 
 #intro-text-bottom {
-  margin-bottom: 6vh;
+  margin-bottom: 4vh;
 }
 
 #accept-gdpr {
@@ -523,7 +523,7 @@ button#cta {
   }
 
   #intro-content {
-    padding-top: 50px;
+    padding-top: 4vh;
   }
 
   #intro-content p {
@@ -536,7 +536,7 @@ button#cta {
   }
 
   p.intro-point {
-    padding: 20px 15px;
+    padding: 1vh 15px;
   }
 
   .point-grid {
@@ -684,7 +684,7 @@ button#cta {
 
   p.intro-number {
     display: inline-block;
-    margin-top: 32px;
+    margin-top: 2.5vh;
   }
 
   

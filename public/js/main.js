@@ -75,6 +75,7 @@ const StartAudioContext = require('startaudiocontext');
         createBlobAtLocation(msg.coords, msg.colour, msg.instrument, msg.pitch);
       });
       this.isLoading = false;
+      this.setupAnalytics();
     },
     methods: {
       toggleIntro: function () {
@@ -82,6 +83,7 @@ const StartAudioContext = require('startaudiocontext');
         this.introShown = true;
         Tone.context.resume();
         this.introOpen = !this.introOpen;
+        this.aboutOpen ? this.aboutOpen = false : null;
         if (!this.coords) {
           this.getLocation();
         }
@@ -91,6 +93,7 @@ const StartAudioContext = require('startaudiocontext');
       },
       toggleAbout: function() {
         this.aboutOpen = !this.aboutOpen;
+        this.introOpen && this.introShown ? this.introOpen = false : null;
       },
       timeoutCta: function() {
         this.ctaEnabled = false;
@@ -98,6 +101,11 @@ const StartAudioContext = require('startaudiocontext');
         setTimeout(function () {
           self.ctaEnabled = true;
         }, 1500);
+      },
+      goHome: function() {
+        this.aboutOpen = false;
+        this.introShown ? this.introOpen = false : null;
+
       },
       triggerCta: function() {
         if (this.coords) {
@@ -156,7 +164,6 @@ const StartAudioContext = require('startaudiocontext');
           app.location = updatedPosition;
       },
       acceptGDPR: function() {
-        setupAnalytics();
         this.closeGDPR();
       },
       closeGDPR: function() {
@@ -331,9 +338,9 @@ const StartAudioContext = require('startaudiocontext');
     camera.updateProjectionMatrix();
 
     if (window.innerWidth < 600) {
-      camera.position.z = 650;
+      camera.position.z = 500;
     } else {
-      camera.position.z = 450;
+      camera.position.z = 375;
     }
 
     // Add camera controls

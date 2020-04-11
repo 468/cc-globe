@@ -13,7 +13,7 @@ body {
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: 10;
+  z-index: 99;
   background-color: #000000;
   top: 0;
   left: 0;
@@ -22,24 +22,26 @@ body {
 h1 {
   font-family: 'wremena', sans-serif;
   font-weight: 400;
-  font-size: 3em;
   color: #ffffff;
   margin: 14px;
-  z-index: 8;
+  z-index: 8;margin-top: 30px;
   position: relative;
   margin-bottom: 0;
+  font-size: 40px;
+  margin-top: 30px;
+  padding-left: 16px;
 }
 
 #intro-content {
   background-color: #000000;
   text-align: center;
   color: #ffffff;
-  font-family: helvetica, 'IBM Plex Sans', sans-serif;
+  font-family: 'Helvetica Neue', 'IBM Plex Sans', sans-serif;
   width: 100%;
-  z-index: 3;
+  z-index: 14;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.25);
-  padding-top: 60px;
+  padding-top: 80px;
 }
 
 #intro-content .intro-number {
@@ -63,6 +65,7 @@ h1 {
 .point-grid {
   display: grid;
   margin: 0 20px;
+  margin-right: 0px;
 }
 
 .point-grid p:nth-child(1) {
@@ -89,7 +92,6 @@ h1 {
 .list-grid li:nth-child(2) {
   grid-column: 2;
   grid-row: 1;
-  height: 100px;
 }
 
 .list-grid li:nth-child(3) {
@@ -105,11 +107,13 @@ p.intro-point {
   display: inline-block;
   text-align: left;
   padding: 0px 15px;
+  margin-bottom: 5px;
 }
 
 #list-grid-container {
   margin: 0 auto;
   max-width: 600px;
+  margin-bottom: 10px;
 }
 
 #intro-content ul {
@@ -124,11 +128,14 @@ button#intro-cta {
   border-radius: 10px;
   background-color: transparent;
   color: #ffffff;
-  width: 180px;
+  width: 140px;
   height: 80px;
   font-weight: 400;
-  margin: 8vh 0;
   border: 3px solid #A9F406;
+  font-weight: 700;
+  font-family: 'helvetica', 'IBM Plex Sans', sans-serif;
+  margin-bottom: 6vh;
+  
 }
 
 button#about-close {
@@ -150,17 +157,24 @@ button#about-close {
   position: relative;
 }
 
+#about-content a {
+  color: #ffffff;
+}
+
 #about-content h2 {
   font-family: 'wremena', sans-serif;
   font-weight: 400;
-  font-size: 50px;
+  font-size: 30px;
   color: #A9F406;
   display: inline-block;
+  margin-bottom: 0;
 }
 
 #about-content p {
-  font-family: helvetica, 'IBM Plex Sans', sans-serif;
-  font-size: 25px;
+  font-family: 'Helvetica Neue', 'IBM Plex Sans', sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 10px;
 }
 
 .three-container {
@@ -182,28 +196,29 @@ button#about-close {
 }
 
 button#cta {
-  font-family: helvetica, 'IBM Plex Sans', sans-serif;
+  font-family: 'Helvetica', 'IBM Plex Sans', sans-serif;
   font-size: 30px;
   color: #ffffff;
   background-color: transparent;
   width: 155px;
   height: 155px;
   border-radius: 50%;
-  border: 2px solid #A9F406;
+  border: 3px solid #A9F406;
   font-weight: 700;
   cursor: pointer;
 }
 
 
 .menu {
-  font-family: helvetica, 'IBM Plex Sans', sans-serif;
+  font-family: 'Helvetica Neue', 'IBM Plex Sans', sans-serif;
   font-size: 20px;
   color: #A9F406;
   top: 20px;
   text-align: right;
   clear: both;
   max-height: 0;
-  transition: max-height .2s ease-out;
+  font-weight: 500;
+  line-height: 30px;
 }
 
 .menu-border {
@@ -213,12 +228,13 @@ button#cta {
 .li-border {
   border-top: 1px solid;
   border-bottom: 1px solid;
+  background-color: #000;
 }
 
 /* header */
 
 .header {
-  font-family: helvetica, 'IBM Plex Sans', sans-serif;
+  font-family: 'Helvetica Neue', 'IBM Plex Sans', sans-serif;
   font-size: 20px;
   color: #A9F406;
   max-width: 645px;
@@ -227,9 +243,9 @@ button#cta {
   text-align: right;
   clear: both;
   max-height: 0;
-  transition: max-height .2s ease-out;
   z-index: 9;
   width: 100%;
+  z-index: 20;
 }
 
 .header ul {
@@ -264,7 +280,6 @@ button#cta {
 .header .menu {
   clear: both;
   max-height: 0;
-  transition: max-height .2s ease-out;
 }
 
 /* menu icon */
@@ -272,7 +287,7 @@ button#cta {
 .header .menu-icon {
   cursor: pointer;
   float: right;
-  padding: 18px 0px;
+  padding: 15px 0px;
   position: relative;
   user-select: none;
   margin-right: 20px;
@@ -284,6 +299,7 @@ button#cta {
   position: relative;
   transition: background .2s ease-out;
   width: 28px;
+  margin-top: 15px;
 }
 
 .header .menu-icon .navicon:before,
@@ -339,7 +355,7 @@ button#cta {
   right: 20px;
   bottom: 16px;
   z-index: 11;
-  width: 60px;
+  width: 40px;
 }
 
 #logo {
@@ -352,13 +368,13 @@ button#cta {
   bottom: 0;
   left: 0;
   z-index: 9;
-  height: 80px;
   text-align: center;
   background-color: #000000;
   border-top: 2px solid #ffffff;
   color: #ffffff;
   font-size: 18px;
-  font-family: helvetica, 'IBM Plex Sans', sans-serif;
+  font-family: 'Helvetica Neue', 'IBM Plex Sans', sans-serif;
+  z-index: 22;
 }
 
 #gdpr-banner {
@@ -366,7 +382,12 @@ button#cta {
   text-align: center;
   margin: 0 auto;
   height: 100%;
-  line-height: 80px;
+  background-color: #000000;
+  padding: 20px 0;
+}
+
+#intro-text-bottom {
+  margin-bottom: 6vh;
 }
 
 #accept-gdpr {
@@ -375,7 +396,7 @@ button#cta {
   background-color: #A9F406;
   color: #000000;
   padding: 5px 28px;
-  margin: 0 20px;
+  margin: 10px;
 }
 
 #reject-gdpr {
@@ -392,9 +413,15 @@ button#cta {
   #intro-content {
     padding-top: 30px;
   }
+}
+
+@media (max-width: 750px) {
+  #intro-content {
+    padding-top: 30px;
+  }
 
   button#intro-cta { 
-    margin: 6vh 0;
+    margin-bottom: 6vh;
   }
 }
 
@@ -406,13 +433,30 @@ button#cta {
   #intro-content ul {
     padding: 15px 30px;
   }
+}
+
+@media (max-width: 400px) {
+  h1 {
+    font-size: 30px;
+  }
+
+  
+
+  .navicon {
+    width: 20px !important;
+    margin-top: 10px !important;
+  }
 
 }
 
 @media (min-width: 48em) {
 
+  body {
+    overflow-y: scroll;
+  }
+
   .header {
-    right: 20px;
+    right: 25px;
     max-width: 645px;
   }
 
@@ -421,7 +465,48 @@ button#cta {
   }
 
   .header li {
-    padding: 5px;
+    padding: 0;
+  }
+
+  button#intro-cta {
+    width: 180px;
+  }
+
+  #about-content h2 {
+    font-size: 50px;
+  }
+
+  #about-content p {
+    font-size: 20px;
+    line-height: 29px;
+  }
+
+  .side-help {
+    max-width: 355px;
+    width: 355px;
+    float: right;
+    right: 25px;
+    top: 100px;
+    border: 1px solid #A9F406;
+    padding-top: 55px !important;
+    padding-bottom: 30px !important;
+  }
+
+  #close-help {
+    text-align: right;
+    display: inline-block;
+    background-color: none;
+    border: none;
+    background: none;
+    color: #A9F406;
+    top: 0;
+    position: absolute;
+    right: 3px;
+    font-size: 35px;
+  }
+
+  .list-grid li:nth-child(2) {
+    height: 140px;
   }
 
   .menu {
@@ -437,9 +522,17 @@ button#cta {
     user-select: none;
   }
 
+  #intro-content {
+    padding-top: 50px;
+  }
+
   #intro-content p {
     max-width: 600px;
-    font-size: 1.1em;
+    font-size: 20px;
+    font-weight: 400;
+    max-width: 600px;
+    font-weight: 400;
+    line-height: 29px;
   }
 
   p.intro-point {
@@ -448,11 +541,13 @@ button#cta {
 
   .point-grid {
     margin: 0px;
+    margin-right: 0px;
   }
   
   h1 {
-    font-size: 5em;
-    margin: 30px;
+    font-size: 72px;
+    margin: 15px 29px;
+    padding-left: 0px;
   }
 
   .header li {
@@ -499,7 +594,7 @@ button#cta {
     display: inline-block;
     background-color: #000;
     font-family: sans-serif, Arial;
-    border: 2px solid #222;
+    border: 2px solid #A9F406;
     height: 20px;
     width: 0;
     margin: 0 10px;
@@ -541,14 +636,58 @@ button#cta {
 
   #intro-content .intro-number {
     color: #A9F406;
-    font-size: 2.7em;
+    font-size: 40px;
+    font-family: 'helvetica', 'IBM Plex Sans', sans-serif;
     font-weight: 700;
+    line-height: 29px;
+  }
+
+  .small-intro-number {
+    color: #fff !important;
+    font-size: 1em !important;
+    margin-bottom: 0 !important;
+    font-weight: 400 !important;
+    margin-top: -4px !important;
+    padding-right: 15px !important;;
+    padding-left: 15px !important;;
+  }
+
+  .small-list-grid {
+    display: block !important;
+  }
+
+  .small-list-grid-container {
+    padding-bottom: 15px;
+  }
+
+  .small-list-grid li:nth-child(2) {
+    height: 55px !important;
+  }
+
+  .small-intro-point {
+    padding: 0 10px !important;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px !important;
+    line-height: 18px !important;
+    width: 85% !important;
+  }
+
+  .small-text-block {
+    font-size: 16px !important;
+    line-height: 20px !important;
+  }
+
+  .small-point-grid {
+   
   }
 
   p.intro-number {
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 32px;
   }
+
+  
 }
 
 /* vue animations */

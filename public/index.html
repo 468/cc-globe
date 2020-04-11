@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Polyphonic.earth</title>
+  <title>Polyphonic Earth</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -15,7 +15,11 @@
       >
       </div>
     </transition>
-    <h1>Polyphonic Earth</h1>
+    <h1 
+      @click="goHome()"
+    >
+      Polyphonic Earth
+    </h1>
     <section class="header">
       <input class="menu-btn" type="checkbox" id="menu-btn" />
       <label 
@@ -40,7 +44,7 @@
         <transition name="fade">
           <li 
             id="contact-link" 
-            v-if="this.introShown && !this.aboutOpen"
+            v-if="this.introShown && (!this.aboutOpen || this.isMobileView)"
             :class="[this.isMobileView && this.menuDropdownToggle ? 'li-border' : '']"
           >
             <a href="#" @click="toggleIntro()">
@@ -54,44 +58,53 @@
       <section 
         id="intro-content" 
         v-if="this.introOpen && !this.aboutOpen"
+        :class="[!this.isMobileView && this.introShown ? 'side-help' : '']"
       >
-        <p class="text-block">
+        <button
+          id='close-help' 
+          v-if="this.introOpen && this.introShown && !this.isMobileView"
+          @click="toggleIntro()"
+        >
+        ×
+        </button>
+        <p :class="['text-block', this.introOpen && this.introShown && !this.isMobileView ? 'small-text-block' : '']">
           In times that call for us to be physically apart, we would like to propose an alternative view of what it can mean to be together. Nobody is ever alone. We are all part of the ecosystem of the Earth.
         </p>
-        <div id="list-grid-container">
-          <ul class="list-grid">
-            <li class="point-grid">
-              <p class="intro-number">
+        <div id="list-grid-container" :class="[this.introOpen && this.introShown && !this.isMobileView ? 'small-list-grid-container' : '']">
+          <ul :class="['list-grid', this.introOpen && this.introShown && !this.isMobileView ? 'small-list-grid' : '']">
+            <li :class="['point-grid', this.introOpen && this.introShown && !this.isMobileView ? 'small-point-grid' : '']">
+              <p :class="['intro-number', this.introOpen && this.introShown && !this.isMobileView ? 'small-intro-number' : '']">
                 1.
               </p>
-              <p class="intro-point">
-                Allow your location to be accessed so you can emit a sound based on your geolocation. If you would prefer not to share, you will view the website as a guest. 
+              <p :class="['intro-point', this.introOpen && this.introShown && !this.isMobileView ? 'small-intro-point' : '']">
+                Allow your location to be accessed so light can shine from where you are in the world. If you would prefer not to, you can view the website as a guest.
               </p>
             </li>
-            <li class="point-grid">
-              <p class="intro-number">
+            <li :class="['point-grid', this.introOpen && this.introShown && !this.isMobileView ? 'small-point-grid' : '']">
+              <p :class="['intro-number', this.introOpen && this.introShown && !this.isMobileView ? 'small-intro-number' : '']">
                 2.
               </p>
-              <p class="intro-point">
-                Press enter to feel closer to your earthly neighbours with sound.
+              <p :class="['intro-point', this.introOpen && this.introShown && !this.isMobileView ? 'small-intro-point' : '']">
+                Press enter to interact with other earthly neighbours through sound. 
               </p>
             </li>
-            <li class="point-grid">
-              <p class="intro-number">
+            <li :class="['point-grid', this.introOpen && this.introShown && !this.isMobileView ? 'small-point-grid' : '']">
+              <p :class="['intro-number', this.introOpen && this.introShown && !this.isMobileView ? 'small-intro-number' : '']">
                 3.
               </p>
-              <p class="intro-point">
-                Once inside, press say hi to participate to the live melody.
+              <p :class="['intro-point', this.introOpen && this.introShown && !this.isMobileView ? 'small-intro-point' : '']">
+                Once inside, press ‘Say hi’ to participate in the live melody. You can edit the sound emitted by selecting different circles next to the ‘Say hi’ button.
               </p>
             </li>
           </ul>
         </div>
 
-        <p class="text-block">
+        <p id="intro-text-bottom" :class="['text-block', this.introOpen && this.introShown && !this.isMobileView ? 'small-text-block' : '']">
           Each light is an indication of where other people currently on the website are located. Each person adds a specific note to the sound playing live.
         </p>
 
         <button 
+          v-if="!this.introShown"
           id="intro-cta"
           @click="toggleIntro()"
         >
@@ -108,9 +121,11 @@
         <h2>
           About the project
         </h2>
-        <p>
-          The lights are indications of where the other connected people are currently located. Each person logged in adds a specific melody to the sound playing live on the website.
-        </p>
+        <p>Polyphonic Earth is a creative project in response to the social distances measures being installed in the world for Covid-19.</p>
+        <p>Music has been embedded in cultures for as long as people have formed communities. It has become an integral part of social dynamics, and it is used to collect and bond together. During these difficult times where humans are forced into isolation, this project encourages a social interaction that transcends language online. Polyphonic Earth proposes a way to bridge the social gap by connecting spaces and people from across the globe in unity and harmony. </p>
+        <p>The music and interaction for this piece include sounds that when a button is pressed activates a tone or percussive hit that plays back to all interacting with the website. Each sound is instructed to be in tune with all other sounds so everyone becomes an effortless musician.</p>
+        <p>Polyphonic Earth was developed by the collective <a href="http://www.climateandcities.com" target="_blank">Climate and Cities</a> for the UN open-call for creatives. The source code is <a href="https://github.com/468/cc-globe" target="_blank">available on Github</a>.</p>
+        <p>[<a href="http://www.climateandcities.com" target="_blank">website</a>/<a href="https://www.instagram.com/climateandcities/" target="_blank">insta</a>/<a href="https://twitter.com/climate_cities" target="_blank">twitter</a>]</p>
       </section>
     </transition>
 
@@ -148,7 +163,7 @@
     <transition name="fade">
       <div 
         id="cta-container"
-        v-if="this.ctaEnabled && !this.introOpen"
+        v-if="this.ctaEnabled && (!this.introOpen && !this.aboutOpen)"
       >
         <button 
           id="cta" 
@@ -171,9 +186,8 @@
     <transition name="fade">
       <div id="gdpr-banner-container" v-if="GDPRpopup">
         <div id="gdpr-banner">
-          <span>Gdpr test. Link to privacy policy goes here.</span> 
-          <button @click="acceptGDPR()" id="accept-gdpr">Yes</button>
-          <button @click="closeGDPR()"  id="reject-gdpr">No</button>
+          <span>This website uses performance cookies to know how people have used our website. We do not track personal information and do not store your location once you have left!</span> 
+          <button @click="acceptGDPR()" id="accept-gdpr">Okay</button>
         </div>
       </div>
     </transition>

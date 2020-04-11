@@ -92765,7 +92765,7 @@ const StartAudioContext = require('startaudiocontext');
         createBlobAtLocation(msg.coords, msg.colour, msg.instrument, msg.pitch);
       });
       this.isLoading = false;
-      this.setupAnalytics();
+      setupAnalytics();
     },
     methods: {
       toggleIntro: function () {

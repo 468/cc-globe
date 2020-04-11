@@ -14,5 +14,8 @@
   },
   "scripts": {
     "start": "node server.js"
+  },
+  "devDependencies": {
+    "terser": "^4.6.11"
   }
 }

@@ -86,17 +86,17 @@ h1 {
 
 .list-grid li:nth-child(1) {
   grid-row-start: 1;
-  grid-row-end: 3;
+  grid-row-end: 1;
 }
 
 .list-grid li:nth-child(2) {
-  grid-column: 2;
-  grid-row: 1;
+  grid-column: 1;
+  grid-row: 2;
 }
 
 .list-grid li:nth-child(3) {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 1;
 }
 
 p.intro-number {
@@ -197,11 +197,11 @@ button#about-close {
 
 button#cta {
   font-family: 'Helvetica', 'IBM Plex Sans', sans-serif;
-  font-size: 30px;
+  font-size: 20px;
   color: #ffffff;
   background-color: transparent;
-  width: 155px;
-  height: 155px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   border: 3px solid #A9F406;
   font-weight: 700;
@@ -362,6 +362,74 @@ button#cta {
   width: 100%;
 }
 
+#pitch-container {
+  position: absolute;
+  bottom: 8%;
+  width: 100%;
+  height: 137px;
+}
+
+.pitch-options {
+  display: inline-block;
+  z-index: 3;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  line-height: 137px;
+  top: 15px;
+}
+
+.pitch-options input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.pitch-options label {
+  display: inline-block;
+  background-color: #000;
+  font-family: sans-serif, Arial;
+  border: 2px solid #A9F406;
+  margin: 0 2px;
+  padding: 1.8vw 2.5vw;
+  border-radius: 50%;
+  display: inline;
+  color: #ffffff;
+  font-size: 2.5vw;
+}
+
+.pitch-options input[type="radio"]:checked + label {
+  background-color:#A9F406;
+  border-color: #A9F406;
+  color: #000000;
+}
+
+.pitch-options input[type="radio"]:focus + label {
+  
+}
+
+.pitch-options label:hover {
+  background-color: #000;
+  border-color: #A9F406
+}
+
+#pitch-options-left {
+  left: 0;
+  width: calc(50% - 65px);
+  text-align: right;
+  z-index: 7;
+  position: absolute;
+}
+
+#pitch-options-right {
+  right: 0;
+  width: calc(50% - 65px);
+  text-align: left;
+  z-index: 7;
+  position: absolute;
+}
+
+
 #gdpr-banner-container {
   position: fixed;
   width: 100%;
@@ -450,6 +518,42 @@ button#cta {
 }
 
 @media (min-width: 48em) {
+
+  button#cta {
+    width: 155px;
+    height: 155px;
+    font-size: 30px;
+  }
+
+  .pitch-options label {
+    display: inline-block;
+    background-color: #000;
+    font-family: sans-serif, Arial;
+    border: 2px solid #A9F406;
+    height: 20px;
+    width: 0;
+    margin: 0 10px;
+    height: 45px;
+    padding: 11px 15px;
+    border-radius: 50%;
+    height: 0px;
+    display: inline;
+    font-size: 1em;
+  }
+
+  .pitch-options {
+    top: 0;
+  }
+
+  
+#pitch-options-left {
+  width: calc(50% - 100px);
+}
+
+#pitch-options-right {
+  width: calc(50% - 100px);
+}
+
 
   body {
     overflow-y: scroll;
@@ -567,73 +671,6 @@ button#cta {
     display: grid;
   }
 
-  #pitch-container {
-    position: absolute;
-    bottom: 7.5%;
-    width: 100%;
-    height: 137px;
-  }
-
-  .pitch-options {
-    display: inline-block;
-    z-index: 3;
-    position: absolute;
-    text-align: center;
-    width: 100%;
-    line-height: 137px;
-
-  }
-
-  .pitch-options input[type="radio"] {
-    opacity: 0;
-    position: fixed;
-    width: 0;
-  }
-
-  .pitch-options label {
-    display: inline-block;
-    background-color: #000;
-    font-family: sans-serif, Arial;
-    border: 2px solid #A9F406;
-    height: 20px;
-    width: 0;
-    margin: 0 10px;
-    height: 45px;
-    padding: 15px;
-    border-radius: 50%;
-    height: 0px;
-  }
-
-  .pitch-options input[type="radio"]:checked + label {
-    background-color:#A9F406;
-    border-color: #A9F406;
-  }
-
-  .pitch-options input[type="radio"]:focus + label {
-    
-  }
-
-  .pitch-options label:hover {
-    background-color: #000;
-    border-color: #A9F406
-  }
-
-  #pitch-options-left {
-    left: 0;
-    width: calc(50% - 100px);
-    text-align: right;
-    z-index: 7;
-    position: absolute;
-  }
-
-  #pitch-options-right {
-    right: 0;
-    width: calc(50% - 100px);
-    text-align: left;
-    z-index: 7;
-    position: absolute;
-  }
-
   #intro-content .intro-number {
     color: #A9F406;
     font-size: 40px;
@@ -648,8 +685,8 @@ button#cta {
     margin-bottom: 0 !important;
     font-weight: 400 !important;
     margin-top: -4px !important;
-    padding-right: 15px !important;;
-    padding-left: 15px !important;;
+    padding-right: 15px !important;
+    padding-left: 15px !important;
   }
 
   .small-list-grid {

@@ -85,7 +85,7 @@
                 1.
               </p>
               <p :class="['intro-point', this.introOpen && this.introShown && !this.isMobileView ? 'small-intro-point' : '']">
-                Allow your location to be accessed so light can shine from where you are when emitting a sound. If you would prefer not to, you will view the website as a guest. 
+                Allow your location to be accessed so light can shine from where you are when emitting a sound. If you would prefer not to, you will view the website as a guest.  
               </p>
             </li>
             <li :class="['point-grid', this.introOpen && this.introShown && !this.isMobileView ? 'small-point-grid' : '']">
@@ -101,15 +101,16 @@
                 3.
               </p>
               <p :class="['intro-point', this.introOpen && this.introShown && !this.isMobileView ? 'small-intro-point' : '']">
-                Once inside, press ‘Say hi’ to participate in the live melody. You can edit the sound emitted by selecting different circles next to the ‘Say hi’ button.
+                You can edit the sound emitted by selecting different circles next to the ‘Say Hi’ button.
               </p>
             </li>
           </ul>
         </div>
-
+        <!--
         <p id="intro-text-bottom" :class="['text-block', this.introOpen && this.introShown && !this.isMobileView ? 'small-text-block' : '']">
           Each light is an indication of where other people currently on the website are located.
         </p>
+        !-->
 
         <button 
           v-if="!this.introShown"
@@ -145,24 +146,24 @@
 
         <div id="pitch-options-left" class="pitch-options">
           <input type="radio" id="pitch-option-1" :value="scale[0]" v-model="pitch" class="checkmark">
-          <label for="pitch-option-1"></label> 
+          <label for="pitch-option-1">1</label> 
 
           <input type="radio" id="pitch-option-2" :value="scale[1]" v-model="pitch" class="checkmark">
-          <label for="pitch-option-2"></label> 
+          <label for="pitch-option-2">2</label> 
           
           <input type="radio" id="pitch-option-3"  :value="scale[2]" v-model="pitch" class="checkmark">
-          <label for="pitch-option-3"></label> 
+          <label for="pitch-option-3">3</label> 
         </div>
 
         <div id="pitch-options-right" class="pitch-options">
           <input type="radio" id="pitch-option-4" :value="scale[3]" v-model="pitch" class="checkmark">
-          <label for="pitch-option-4"></label> 
+          <label for="pitch-option-4">4</label> 
 
           <input type="radio" id="pitch-option-5" :value="scale[4]" v-model="pitch" class="checkmark">
-          <label for="pitch-option-5"></label> 
+          <label for="pitch-option-5">5</label> 
 
           <input type="radio" id="pitch-option-6"  :value="scale[5]" v-model="pitch" class="checkmark">
-          <label for="pitch-option-6"></label> 
+          <label for="pitch-option-6">6</label> 
         </div>
       </div>
     </transition>

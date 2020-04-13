@@ -122,7 +122,7 @@ const StartAudioContext = require('startaudiocontext');
         this.userColour = '0x' + Math.floor(Math.random()*16777215).toString(16);
       },
       setScale: function() {
-        if (this.userInstrument === 'bass' || this.userInstrument === 'low_hit') {
+        if (this.userInstrument === 'bass' || this.userInstrument === 'low_hit' || this.userInstrument === 'pad_1' || this.userInstrument === 'pluck_2'  || this.userInstrument === 'rim'  || this.userInstrument === 'shaker' || this.userInstrument === 'hat1') {
           this.scale = this.pitchArrayOne;
           this.pitchEnabled = true;
         } else if (this.userInstrument === 'pluck' || this.userInstrument === 'pad_airy_1' || this.userInstrument === 'pad_airy_2' ) {

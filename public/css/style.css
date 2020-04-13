@@ -477,8 +477,8 @@ button#cta {
   }
 
   #about-content p {
-    font-size: 20px;
-    line-height: 29px;
+    font-size: 16px;
+    line-height: 20px;
   }
 
   .side-help {
@@ -528,11 +528,11 @@ button#cta {
 
   #intro-content p {
     max-width: 600px;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
     max-width: 600px;
     font-weight: 400;
-    line-height: 29px;
+    line-height: 20px;
   }
 
   p.intro-point {

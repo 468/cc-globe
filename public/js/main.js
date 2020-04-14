@@ -228,7 +228,7 @@ const StartAudioContext = require('startaudiocontext');
     allSounds[`${sounds[i]}`].connect(reverb);
     allSounds[`${sounds[i]}`].volume.value = -5;
 
-    if (sounds[i] === 'bass') {
+    if (sounds[i] === 'bass' || sounds[i] === 'pad_1') {
       allSounds[`${sounds[i]}`].connect(pitchShift);
     } else if (sounds[i] === 'pluck' || (sounds[i] === 'pluck_2') || sounds[i] === 'pad_airy_1' || sounds[i] === 'pad_airy_2') {
       allSounds[`${sounds[i]}`].connect(pitchShiftTwo);
@@ -241,11 +241,12 @@ const StartAudioContext = require('startaudiocontext');
 
   function createBlobAtLocation(coords, colour, sound, pitch) {
     console.log(sound);
+    console.log(pitch);
     if (Number.isFinite(coords.x) && Number.isFinite(coords.y) && Number.isFinite(coords.z)) {
       allSounds[sound].stop();
-      if(sound === 'bass') {
+      if(sound === 'bass' || sounds[i] === 'pad_1') {
         pitchShift.pitch = pitch;
-      } else if (sound === 'pluck' || sound === 'pad_airy_1' || sound === 'pad_airy_2' ) {
+      } else if (sound === 'pluck' || sound ==='pluck_2' || sound === 'pad_airy_1' || sound === 'pad_airy_2' ) {
         pitchShiftTwo.pitch = pitch;
       }
       reverb.generate();

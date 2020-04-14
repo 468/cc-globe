@@ -92932,7 +92932,7 @@ const StartAudioContext = require('startaudiocontext');
     console.log(pitch);
     if (Number.isFinite(coords.x) && Number.isFinite(coords.y) && Number.isFinite(coords.z)) {
       allSounds[sound].stop();
-      if(sound === 'bass' || sounds[i] === 'pad_1') {
+      if(sound === 'bass' || sound === 'pad_1') {
         pitchShift.pitch = pitch;
       } else if (sound === 'pluck' || sound ==='pluck_2' || sound === 'pad_airy_1' || sound === 'pad_airy_2' ) {
         pitchShiftTwo.pitch = pitch;

@@ -155,15 +155,15 @@
           <label for="pitch-option-3">3</label> 
         </div>
 
-        <div id="pitch-options-right" class="pitch-options">
-          <input type="radio" id="pitch-option-4" :value="scale[3]" v-model="pitch" class="checkmark">
-          <label for="pitch-option-4">4</label> 
+        <div id="pitch-options-right" class="pitch-options" >
+          <input type="radio" id="pitch-option-4" :value="scale[3]" v-model="pitch" class="checkmark" v-if="this.scale.length > 3">
+          <label for="pitch-option-4" v-if="this.scale.length > 3">4</label> 
 
-          <input type="radio" id="pitch-option-5" :value="scale[4]" v-model="pitch" class="checkmark">
-          <label for="pitch-option-5">5</label> 
+          <input type="radio" id="pitch-option-5" :value="scale[4]" v-model="pitch" class="checkmark" v-if="this.scale.length > 4">
+          <label for="pitch-option-5" v-if="this.scale.length > 4">5</label> 
 
-          <input type="radio" id="pitch-option-6"  :value="scale[5]" v-model="pitch" class="checkmark">
-          <label for="pitch-option-6">6</label> 
+          <input type="radio" id="pitch-option-6"  :value="scale[5]" v-model="pitch" class="checkmark" v-if="this.scale.length > 5">
+          <label for="pitch-option-6" v-if="this.scale.length > 5">6</label> 
         </div>
       </div>
     </transition>

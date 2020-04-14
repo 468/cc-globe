@@ -92716,11 +92716,15 @@ const StartAudioContext = require('startaudiocontext');
       connections: {},
       introShown: false,
       GDPRpopup: true,
-      sounds: [ "bass", "hat1", "low_hit", "pad_1", "pad_airy_1", "pad_airy_2", "pluck", "pluck_2", "rim", "shaker" ],
+      sounds: [ "bass", "pad_1", "pad_airy_1", "pad_airy_2", "pluck", "pluck_2", "bell", "clap", "hat", "tom", ],
       instrument: false,
       pitch: 0,
       pitchArrayOne: [0, 2, 4, 7, 9, 10],
       pitchArrayTwo: [-10, -9, -6, 0, 4, 8],
+      pitchArrayBell: [1, 2, 3, 4, 5, 6],
+      pitchArrayClap: [1, 2, 3, 4, 5 ],
+      pitchArrayHat: [1, 2, 3, 4 ],
+      pitchArrayTom: [1, 2, 3, 4, 5 ],
       scale: false,
       pitchEnabled: false,
       isMobileView: false,
@@ -92759,7 +92763,13 @@ const StartAudioContext = require('startaudiocontext');
       })
     
       socket.on('light', function(msg){
-        createBlobAtLocation(msg.coords, msg.colour, msg.instrument, msg.pitch);
+        let sound;
+        if (msg.instrument === 'bell' || msg.instrument === 'clap' || msg.instrument === 'hat' || msg.instrument === 'tom') {
+          sound = `${msg.instrument}_new_${msg.pitch}`;
+        } else {
+          sound = msg.instrument;
+        }
+        createBlobAtLocation(msg.coords, msg.colour, sound, msg.pitch);
       });
       this.isLoading = false;
     },
@@ -92810,27 +92820,38 @@ const StartAudioContext = require('startaudiocontext');
         this.userColour = '0x' + Math.floor(Math.random()*16777215).toString(16);
       },
       setScale: function() {
-        if (this.userInstrument === 'bass' || this.userInstrument === 'low_hit' || this.userInstrument === 'pad_1' || this.userInstrument === 'pluck_2'  || this.userInstrument === 'rim'  || this.userInstrument === 'shaker' || this.userInstrument === 'hat1') {
+        if (this.userInstrument === 'bass' || this.userInstrument === 'pad_1' || this.userInstrument === 'pluck_2' ) {
           this.scale = this.pitchArrayOne;
           this.pitchEnabled = true;
         } else if (this.userInstrument === 'pluck' || this.userInstrument === 'pad_airy_1' || this.userInstrument === 'pad_airy_2' ) {
           this.scale = this.pitchArrayTwo;
           this.pitchEnabled = true;
-        } else {
-          this.scale = this.pitchArrayOne;
+        } else if (this.userInstrument === 'bell') {
+          this.scale = this.pitchArrayBell;
+          this.pitchEnabled = true;
+        } else if (this.userInstrument === 'clap') {
+          this.scale = this.pitchArrayClap;
+          this.pitchEnabled = true;
+        } else if (this.userInstrument === 'tom') {
+          this.scale = this.pitchArrayTom;
+          this.pitchEnabled = true;
+        } else if (this.userInstrument === 'hat') {
+          this.scale = this.pitchArrayHat;
+          this.pitchEnabled = true;
         }
       },
       pickUserInstrument: function() {
         this.userInstrument = this.sounds[Math.floor(Math.random() * this.sounds.length)];
         this.setScale();
+        this.setPitch();
       },
       setPitch: function() {
-        if (this.userInstrument === 'bass' || this.userInstrument === 'low_hit') {
+        if (this.userInstrument === 'bass' || this.userInstrument === 'pad_1' || this.userInstrument === 'pluck_2') {
           this.pitch = this.pitchArrayOne[Math.floor(Math.random() * this.pitchArrayOne.length)];
         } else if (this.userInstrument === 'pluck' || this.userInstrument === 'pad_airy_1' || this.userInstrument === 'pad_airy_2' ) {
           this.pitch = this.pitchArrayTwo[Math.floor(Math.random() * this.pitchArrayTwo.length)];
         } else {
-          this.pitch = 0;
+          this.pitch = 1;
         }
       },
       assignUser: function() {
@@ -92868,10 +92889,8 @@ const StartAudioContext = require('startaudiocontext');
     }
   })
 
-  //setupAnalytics();
-
   const bgSound = "background";
-  const sounds = [ "bass", "hat1", "low_hit", "pad_1", "pad_airy_1", "pad_airy_2", "pluck", "pluck_2", "rim", "shaker" ]
+  const sounds = [ "bass", "pad_1", "pad_airy_1", "pad_airy_2", "pluck", "pluck_2", "bell_new_1", "bell_new_2", "bell_new_3", "bell_new_4", "bell_new_5", "bell_new_6", "clap_new_1", "clap_new_2", "clap_new_3", "clap_new_4", "clap_new_5", "hat_new_1", "hat_new_2", "hat_new_3", "hat_new_4", "tom_new_1", "tom_new_2", "tom_new_3", "tom_new_4", "tom_new_5" ]
   const allSounds = {};
   
   const reverb = new Tone.Reverb().toMaster();
@@ -92889,7 +92908,7 @@ const StartAudioContext = require('startaudiocontext');
 
   soundBackground.volume.value = -6;
 
-  for (let i = 0; i< sounds.length; i++) {
+  for (let i = 0; i < sounds.length; i++) {
     allSounds[`${sounds[i]}`] = new Tone.Player({
       url : `./sounds/${sounds[i]}.mp3`,
     }).toMaster();
@@ -92897,10 +92916,9 @@ const StartAudioContext = require('startaudiocontext');
     allSounds[`${sounds[i]}`].connect(reverb);
     allSounds[`${sounds[i]}`].volume.value = -5;
 
-    if (sounds[i] === 'bass' || sounds[i] === 'low_hit') {
+    if (sounds[i] === 'bass') {
       allSounds[`${sounds[i]}`].connect(pitchShift);
-
-    } else if (sounds[i] === 'pluck' || sounds[i] === 'pad_airy_1' || sounds[i] === 'pad_airy_2') {
+    } else if (sounds[i] === 'pluck' || (sounds[i] === 'pluck_2') || sounds[i] === 'pad_airy_1' || sounds[i] === 'pad_airy_2') {
       allSounds[`${sounds[i]}`].connect(pitchShiftTwo);
     }
   }
@@ -92910,9 +92928,10 @@ const StartAudioContext = require('startaudiocontext');
   }
 
   function createBlobAtLocation(coords, colour, sound, pitch) {
+    console.log(sound);
     if (Number.isFinite(coords.x) && Number.isFinite(coords.y) && Number.isFinite(coords.z)) {
       allSounds[sound].stop();
-      if(sound === 'bass' || sound === 'low_hit') {
+      if(sound === 'bass') {
         pitchShift.pitch = pitch;
       } else if (sound === 'pluck' || sound === 'pad_airy_1' || sound === 'pad_airy_2' ) {
         pitchShiftTwo.pitch = pitch;
